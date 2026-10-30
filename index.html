@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amarjeet Kumar Tiwari | BTech EEE Portfolio & Study Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen relative overflow-x-hidden">
+
+    <!-- Background Canvas for Interactive Particles -->
+    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-indigo-500/30">
+                    A
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-wide block text-white">Amarjeet Kumar Tiwari</span>
+                    <span class="text-xs text-indigo-400 font-medium">BTech EEE | Centurion University</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="#about" class="text-slate-300 hover:text-indigo-400 transition">About</a>
+                <a href="#education" class="text-slate-300 hover:text-indigo-400 transition">Education</a>
+                <a href="#skills" class="text-slate-300 hover:text-indigo-400 transition">Skills</a>
+                <a href="#calculator" class="text-slate-300 hover:text-indigo-400 transition">EEE Calculator</a>
+                <a href="#study-hub" class="text-slate-300 hover:text-indigo-400 transition flex items-center gap-1.5 text-indigo-400 font-semibold"><i class="fa-solid fa-book-open"></i> Study Hub & PDFs</a>
+                <a href="#projects" class="text-slate-300 hover:text-indigo-400 transition">Projects</a>
+                <a href="#contact" class="text-slate-300 hover:text-indigo-400 transition">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/6285607067710" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden glass border-b border-slate-800 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-slate-300 hover:text-indigo-400 font-medium">About</a>
+            <a href="#education" class="block text-slate-300 hover:text-indigo-400 font-medium">Education</a>
+            <a href="#skills" class="block text-slate-300 hover:text-indigo-400 font-medium">Skills</a>
+            <a href="#calculator" class="block text-slate-300 hover:text-indigo-400 font-medium">EEE Calculator</a>
+            <a href="#study-hub" class="block text-indigo-400 font-semibold"><i class="fa-solid fa-book-open"></i> Study Hub & PDFs</a>
+            <a href="#projects" class="block text-slate-300 hover:text-indigo-400 font-medium">Projects</a>
+            <a href="#contact" class="block text-slate-300 hover:text-indigo-400 font-medium">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="relative z-10 pt-20">
+
+        <!-- Hero Section -->
+        <section class="min-h-[90vh] flex items-center justify-center relative px-4 sm:px-6 lg:px-8 py-20">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+                
+                <!-- Hero Text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                        Electrical & Electronics Engineering Student
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Amarjeet Kumar Tiwari</span>
+                    </h1>
+                    <p class="text-slate-300 text-lg sm:text-xl font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        An ambitious BTech EEE undergraduate at Centurion University with a strong passion for power systems, electrical machines, circuit design, quantitative aptitude, and software development.
+                    </p>
+                    
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#study-hub" class="bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold px-7 py-3.5 rounded-xl shadow-xl shadow-indigo-600/30 transition transform hover:-translate-y-1 flex items-center gap-2">
+                            <i class="fa-solid fa-book-reader"></i> Access EEE Study Hub & PDFs
+                        </a>
+                        <a href="https://wa.me/6285607067710" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-7 py-3.5 rounded-xl shadow-xl shadow-emerald-600/30 transition transform hover:-translate-y-1 flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Social Links Badges -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-4">
+                        <a href="https://www.instagram.com/baba_amarjeet_tiwari?igsh=MTh4MW5idGdkeHFoOQ==" target="_blank" class="w-10 h-10 rounded-xl glass hover:bg-indigo-600/20 flex items-center justify-center text-slate-300 hover:text-indigo-400 transition border border-slate-700" title="Instagram">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://youtube.com/@rebelamarjeet6919?si=rQ4aS8TjJ8SIMLOH" target="_blank" class="w-10 h-10 rounded-xl glass hover:bg-red-600/20 flex items-center justify-center text-slate-300 hover:text-red-400 transition border border-slate-700" title="YouTube">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1FowqbWwd7/" target="_blank" class="w-10 h-10 rounded-xl glass hover:bg-blue-600/20 flex items-center justify-center text-slate-300 hover:text-blue-400 transition border border-slate-700" title="Facebook">
+                            <i class="fa-brands fa-facebook text-lg"></i>
+                        </a>
+                        <a href="https://x.com/Amarjeet219?t=ddg_tYNSNG4sXuo9crHbsw&s=09" target="_blank" class="w-10 h-10 rounded-xl glass hover:bg-slate-700 flex items-center justify-center text-slate-350 hover:text-white transition border border-slate-700" title="X (Twitter)">
+                            <i class="fa-brands fa-x-twitter text-lg"></i>
+                        </a>
+                        <a href="mailto:amarjeetkumartiwari219@gmail.com" class="w-10 h-10 rounded-xl glass hover:bg-amber-600/20 flex items-center justify-center text-slate-300 hover:text-amber-400 transition border border-slate-700" title="Email">
+                            <i class="fa-solid fa-envelope text-lg"></i>
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl font-bold text-indigo-400">BTech</span>
+                            <span class="text-xs text-slate-400 font-medium">EEE Degree</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl font-bold text-purple-400">10+</span>
+                            <span class="text-xs text-slate-400 font-medium">Study Guides</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl font-bold text-cyan-400">100%</span>
+                            <span class="text-xs text-slate-400 font-medium">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Photo & Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-3xl blur-xl opacity-50 animate-pulse"></div>
+                        <div class="relative glass rounded-3xl p-4 shadow-2xl overflow-hidden border border-slate-700">
+                            <!-- User Uploaded Photo -->
+                            <img src="IMG_3861.PNG" alt="Amarjeet Kumar Tiwari" class="w-full h-[420px] object-cover rounded-2xl shadow-md">
+                            
+                            <div class="absolute bottom-6 left-6 right-6 glass p-4 rounded-2xl backdrop-blur-md border border-slate-600/50 flex items-center justify-between">
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">Amarjeet Kumar Tiwari</h3>
+                                    <p class="text-xs text-indigo-300">Centurion University (CUTM)</p>
+                                </div>
+                                <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs px-2.5 py-1 rounded-full font-semibold">Active Student</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Professional Profile</span>
+                        <h2 class="text-3xl font-extrabold text-white">Bridging Electrical Engineering & Digital Innovation</h2>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                            I am currently pursuing my Bachelor of Technology (BTech) in Electrical and Electronics Engineering at Centurion University of Technology and Management, Paralakhemundi campus. My technical interests span across power systems, electrical machines, circuit analysis, and modern digital software tools.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="bg-indigo-500/10 text-indigo-300 text-xs px-3 py-1.5 rounded-lg border border-indigo-500/20">Electrical Machines</span>
+                            <span class="bg-purple-500/10 text-purple-300 text-xs px-3 py-1.5 rounded-lg border border-purple-500/20">Power Systems</span>
+                            <span class="bg-cyan-500/10 text-cyan-300 text-xs px-3 py-1.5 rounded-lg border border-cyan-500/20">Circuit Design</span>
+                            <span class="bg-blue-500/10 text-blue-300 text-xs px-3 py-1.5 rounded-lg border border-blue-500/20">Quantitative Aptitude</span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Core Electrical Expertise</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                Strong foundation in AC/DC circuits, transformer analysis, transmission & distribution, and electrical instrumentation.
+                            </p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Academic Excellence</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                Enrolled at Centurion University (Paralakhemundi Campus), maintaining rigorous coursework alongside competitive exam preparation.
+                            </p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Web & Software Dev</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                Building responsive web applications, interactive study portals, and deploying modern digital solutions.
+                            </p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Aptitude & Reasoning</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                Proficient in quantitative aptitude, logical reasoning, and analytical problem-solving for technical placements.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Academic Background</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Education & University Journey</h2>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="glass p-8 rounded-3xl border border-slate-800 relative">
+                    <div class="absolute top-8 right-8 bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-xs font-semibold border border-indigo-500/30">
+                        2025 - 2026
+                    </div>
+                    <div class="flex items-start space-x-6">
+                        <div class="w-16 h-16 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-2xl shrink-0">
+                            <i class="fa-solid fa-university"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white">BTech in Electrical and Electronics Engineering (EEE)</h3>
+                            <h4 class="text-indigo-400 font-medium text-base">Centurion University of Technology and Management (CUTM)</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Paralakhemundi Campus. Focused on advanced electrical engineering principles, power systems, electrical machine design, power electronics, and practical laboratory implementations.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="bg-slate-800 text-slate-300 text-xs px-3 py-1 rounded-md border border-slate-700">Circuit Theory</span>
+                                <span class="bg-slate-800 text-slate-300 text-xs px-3 py-1 rounded-md border border-slate-700">Electrical Machines</span>
+                                <span class="bg-slate-800 text-slate-300 text-xs px-3 py-1 rounded-md border border-slate-700">Power Systems</span>
+                                <span class="bg-slate-800 text-slate-300 text-xs px-3 py-1 rounded-md border border-slate-700">Control Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive EEE Calculator Section -->
+        <section id="calculator" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Engineering Tools</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Interactive Electrical Calculator</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Calculate Ohm's Law parameters instantly for your electrical and circuit calculations.</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto glass p-8 rounded-3xl border border-slate-800 shadow-xl">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Voltage (V) [Volts]</label>
+                        <input type="number" id="calcV" placeholder="e.g., 230" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Current (I) [Amperes]</label>
+                        <input type="number" id="calcI" placeholder="e.g., 5" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Resistance (R) [Ohms]</label>
+                        <input type="number" id="calcR" placeholder="e.g., 46" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Power (P) [Watts]</label>
+                        <input type="number" id="calcP" placeholder="Calculated Power" disabled class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-indigo-400 font-bold">
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <button onclick="calculateOhms()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3.5 rounded-xl shadow-lg transition">
+                        <i class="fa-solid fa-calculator mr-2"></i> Compute Ohm's Law
+                    </button>
+                    <button onclick="clearCalculator()" class="glass hover:bg-slate-800 text-slate-300 px-6 py-3.5 rounded-xl transition border border-slate-700">
+                        Clear
+                    </button>
+                </div>
+                <div id="calcResult" class="mt-6 p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm hidden"></div>
+            </div>
+        </section>
+
+        <!-- Electrical Study Hub & PDF Library Section -->
+        <section id="study-hub" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Interactive EEE Study Hub</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">BTech EEE & Quantitative Books Library</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Click any book below to instantly open the interactive PDF reader and start studying right away!</p>
+            </div>
+
+            <!-- PDF Books Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Book 1: RS Aggarwal Quantitative Aptitude -->
+                <div class="glass rounded-2xl p-6 border border-slate-700/80 hover:border-indigo-500/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-calculator"></i>
+                            </span>
+                            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs px-2.5 py-1 rounded-full font-semibold">Aptitude</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">R.S. Aggarwal Quantitative Aptitude</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+                            The gold standard book for quantitative aptitude, logical reasoning, and competitive placement exams.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-pdf text-red-400 mr-1"></i> Interactive PDF</span>
+                        <button onclick="openPdfReader('R.S. Aggarwal Quantitative Aptitude', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', 'Comprehensive quantitative aptitude guide covering arithmetic, algebra, data interpretation, and logical reasoning for engineering placements.')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open"></i> Read Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Book 2: Electrical Machines - Nagrath & Kothari -->
+                <div class="glass rounded-2xl p-6 border border-slate-700/80 hover:border-indigo-500/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-bolt"></i>
+                            </span>
+                            <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs px-2.5 py-1 rounded-full font-semibold">Core EEE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">Electrical Machines (Nagrath & Kothari)</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Comprehensive study on Transformers, DC Machines, Induction Motors, and Synchronous Generators.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-pdf text-red-400 mr-1"></i> Interactive PDF</span>
+                        <button onclick="openPdfReader('Electrical Machines - Nagrath & Kothari', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', 'Complete textbook reference on transformers, synchronous machines, DC motors, and electromagnetic energy conversion.')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open"></i> Read Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Book 3: Power System Engineering -->
+                <div class="glass rounded-2xl p-6 border border-slate-700/80 hover:border-indigo-500/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-tower-broadcast"></i>
+                            </span>
+                            <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs px-2.5 py-1 rounded-full font-semibold">Power Systems</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">Power System Engineering (C.L. Wadhwa)</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Transmission line parameters, load flow studies, fault analysis, and power system protection.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-pdf text-red-400 mr-1"></i> Interactive PDF</span>
+                        <button onclick="openPdfReader('Power System Engineering - C.L. Wadhwa', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', 'Detailed notes and study material covering generation, transmission lines, symmetrical components, and switchgear protection.')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open"></i> Read Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Book 4: Circuit Theory & Networks -->
+                <div class="glass rounded-2xl p-6 border border-slate-700/80 hover:border-indigo-500/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-microchip"></i>
+                            </span>
+                            <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs px-2.5 py-1 rounded-full font-semibold">Circuits</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">Network Analysis & Synthesis (Van Valkenburg)</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Master nodal and mesh analysis, Laplace transforms, two-port networks, and filter synthesis.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-pdf text-red-400 mr-1"></i> Interactive PDF</span>
+                        <button onclick="openPdfReader('Network Analysis - Van Valkenburg', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', 'Essential reference book for transient response, network functions, Laplace transform analysis, and filter design.')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open"></i> Read Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Book 5: Control Systems Engineering -->
+                <div class="glass rounded-2xl p-6 border border-slate-700/80 hover:border-indigo-500/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-sliders"></i>
+                            </span>
+                            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2.5 py-1 rounded-full font-semibold">Control Systems</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">Control Systems Engineering (I.J. Nagrath)</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Transfer functions, block diagrams, Bode plots, Root Locus, and stability criteria.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-pdf text-red-400 mr-1"></i> Interactive PDF</span>
+                        <button onclick="openPdfReader('Control Systems Engineering - I.J. Nagrath', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', 'In-depth study of feedback control systems, time-response analysis, frequency response, and state-space techniques.')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open"></i> Read Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Book 6: GATE EE Previous Years Guide -->
+                <div class="glass rounded-2xl p-6 border border-slate-700/80 hover:border-indigo-500/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-award"></i>
+                            </span>
+                            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-xs px-2.5 py-1 rounded-full font-semibold">GATE / PSU</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">GATE Electrical Engineering (EE) Solved Papers</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Chapter-wise solved papers with detailed explanations for GATE EE aspirants.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-pdf text-red-400 mr-1"></i> Interactive PDF</span>
+                        <button onclick="openPdfReader('GATE Electrical Engineering Solved Papers', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', 'Chapter-wise previous years questions with comprehensive step-by-step solutions for GATE EE examinations.')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open"></i> Read Now
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Expertise & Competencies</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Technical Skill Matrix</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Electrical Skills -->
+                <div class="glass p-8 rounded-3xl border border-slate-800 space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-bolt text-indigo-400"></i> Electrical Engineering Core
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">Electrical Machines & Transformers</span>
+                                <span class="text-indigo-400">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">Power Systems & Transmission</span>
+                                <span class="text-indigo-400">85%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">Circuit Theory & Network Analysis</span>
+                                <span class="text-indigo-400">92%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2.5 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">Control Systems & Instrumentation</span>
+                                <span class="text-indigo-400">80%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software & Aptitude -->
+                <div class="glass p-8 rounded-3xl border border-slate-800 space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-code text-cyan-400"></i> Software & Analytical Skills
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">Quantitative Aptitude & Reasoning</span>
+                                <span class="text-cyan-400">95%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-2.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">HTML5, CSS3, JavaScript & Tailwind</span>
+                                <span class="text-cyan-400">88%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-2.5 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">Python & Problem Solving</span>
+                                <span class="text-cyan-400">85%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-1">
+                                <span class="text-slate-300">MATLAB / Simulink Basics</span>
+                                <span class="text-cyan-400">82%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-2.5 rounded-full" style="width: 82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Portfolio Showcase</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Featured Projects</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glass rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-solar-panel"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Solar Power Monitoring System</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Microcontroller-based solar panel voltage, current, and efficiency monitoring system with live data display.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">IoT</span>
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">Arduino</span>
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">Sensors</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openProjectModal('Solar Power Monitoring System', 'An IoT-based hardware and software project designed to track photovoltaic cell performance, ambient temperature, voltage generation, and output power efficiency in real-time.')" class="w-full bg-slate-800 hover:bg-slate-700 text-indigo-400 font-semibold py-2.5 rounded-xl text-sm transition border border-slate-700 flex items-center justify-center gap-2">
+                            <span>View Project Details</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Fault Detection in Transmission Lines</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Simulation model to identify and locate symmetrical and asymmetrical faults in high-voltage AC transmission lines.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">MATLAB</span>
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">Simulink</span>
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">Power Systems</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openProjectModal('Fault Detection in Transmission Lines', 'A comprehensive simulation project utilizing MATLAB/Simulink to analyze line-to-ground, line-to-line, and double line-to-ground faults for robust relay protection schemes.')" class="w-full bg-slate-800 hover:bg-slate-700 text-indigo-400 font-semibold py-2.5 rounded-xl text-sm transition border border-slate-700 flex items-center justify-center gap-2">
+                            <span>View Project Details</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Interactive EEE Study & Quiz Portal</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Web-based study hub containing digital textbooks, formula calculators, and interactive technical quizzes for students.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">HTML5/CSS3</span>
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">JavaScript</span>
+                            <span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-md border border-slate-700">Tailwind</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openProjectModal('Interactive EEE Study & Quiz Portal', 'A modern, responsive web application designed for engineering students to access essential notes, mathematical formula solvers, and self-assessment test papers.')" class="w-full bg-slate-800 hover:bg-slate-700 text-indigo-400 font-semibold py-2.5 rounded-xl text-sm transition border border-slate-700 flex items-center justify-center gap-2">
+                            <span>View Project Details</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-xl max-w-4xl mx-auto space-y-8">
+                <div class="text-center max-w-xl mx-auto">
+                    <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Get In Touch</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2">Let's Connect</h2>
+                    <p class="text-slate-400 text-sm mt-2">Connect via WhatsApp, Social Media, or send a message directly!</p>
+                </div>
+
+                <!-- Direct Contact Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a href="https://wa.me/6285607067710" target="_blank" class="glass-card p-5 rounded-2xl border border-slate-700/80 hover:border-emerald-500/50 transition flex items-center space-x-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400 block font-medium">WhatsApp (+62)</span>
+                            <span class="text-white font-bold text-sm">+62 856-0706-7710</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:amarjeetkumartiwari219@gmail.com" class="glass-card p-5 rounded-2xl border border-slate-700/80 hover:border-amber-500/50 transition flex items-center space-x-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400 block font-medium">Email Address</span>
+                            <span class="text-white font-bold text-xs sm:text-sm truncate">amarjeetkumartiwari219@gmail.com</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Social Links Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <a href="https://www.instagram.com/baba_amarjeet_tiwari?igsh=MTh4MW5idGdkeHFoOQ==" target="_blank" class="glass p-4 rounded-xl text-center hover:bg-slate-800 transition border border-slate-700">
+                        <i class="fa-brands fa-instagram text-pink-400 text-xl mb-2"></i>
+                        <span class="block text-xs font-semibold text-white">Instagram</span>
+                    </a>
+                    <a href="https://youtube.com/@rebelamarjeet6919?si=rQ4aS8TjJ8SIMLOH" target="_blank" class="glass p-4 rounded-xl text-center hover:bg-slate-800 transition border border-slate-700">
+                        <i class="fa-brands fa-youtube text-red-400 text-xl mb-2"></i>
+                        <span class="block text-xs font-semibold text-white">YouTube</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/1FowqbWwd7/" target="_blank" class="glass p-4 rounded-xl text-center hover:bg-slate-800 transition border border-slate-700">
+                        <i class="fa-brands fa-facebook text-blue-400 text-xl mb-2"></i>
+                        <span class="block text-xs font-semibold text-white">Facebook</span>
+                    </a>
+                    <a href="https://x.com/Amarjeet219?t=ddg_tYNSNG4sXuo9crHbsw&s=09" target="_blank" class="glass p-4 rounded-xl text-center hover:bg-slate-800 transition border border-slate-700">
+                        <i class="fa-brands fa-x-twitter text-slate-200 text-xl mb-2"></i>
+                        <span class="block text-xs font-semibold text-white">X / Twitter</span>
+                    </a>
+                </div>
+
+                <form onsubmit="handleContact(event)" class="space-y-6 pt-4 border-t border-slate-800">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Your Name</label>
+                            <input type="text" required placeholder="Enter your name" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Your Email</label>
+                            <input type="email" required placeholder="Enter your email" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Message</label>
+                        <textarea rows="4" required placeholder="Type your message here..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-4 rounded-xl shadow-lg shadow-indigo-600/30 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div class="max-w-7xl mx-auto space-y-4">
+            <p class="text-white font-bold text-lg">Amarjeet Kumar Tiwari</p>
+            <p class="text-slate-400 text-xs sm:text-sm">BTech Electrical and Electronics Engineering | Centurion University of Technology and Management</p>
+            <div class="flex justify-center space-x-6 pt-2">
+                <a href="https://wa.me/6285607067710" target="_blank" class="text-emerald-400 hover:text-emerald-300 text-sm"><i class="fa-brands fa-whatsapp mr-1"></i> +62 856-0706-7710</a>
+                <a href="mailto:amarjeetkumartiwari219@gmail.com" class="text-amber-400 hover:text-amber-300 text-sm"><i class="fa-solid fa-envelope mr-1"></i> Email Me</a>
+            </div>
+            <p class="text-slate-500 text-xs pt-4">&copy; 2026 Amarjeet Kumar Tiwari. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive PDF Reader Modal -->
+    <div id="pdfModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="glass w-full max-w-4xl h-[85vh] rounded-3xl border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div>
+                        <h3 id="modalBookTitle" class="text-lg font-bold text-white">Book Title</h3>
+                        <p class="text-xs text-indigo-400">Interactive PDF Reader & Study Hub</p>
+                    </div>
+                </div>
+                <button onclick="closePdfReader()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+                <div class="lg:col-span-8 bg-slate-950 p-4 flex flex-col items-center justify-center border-r border-slate-800 relative">
+                    <div class="w-full h-full flex flex-col items-center justify-center bg-slate-900/80 rounded-2xl border border-slate-800 p-8 text-center space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-3xl animate-pulse">
+                            <i class="fa-solid fa-book-reader"></i>
+                        </div>
+                        <h4 class="text-white font-bold text-lg" id="viewerBookName">Loading Document...</h4>
+                        <p class="text-slate-400 text-xs sm:text-sm max-w-md" id="viewerBookDesc">
+                            Document loaded successfully in secure reader mode. You can read, scroll through pages, or download for offline study.
+                        </p>
+                        <div class="flex items-center gap-3 pt-4">
+                            <a id="downloadBtn" href="#" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-lg transition flex items-center gap-2">
+                                <i class="fa-solid fa-download"></i> Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 p-6 bg-slate-900/40 flex flex-col justify-between overflow-y-auto">
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Study Notes & Highlights</h5>
+                        <div class="glass-card p-4 rounded-xl text-xs text-slate-300 space-y-2 border border-slate-800">
+                            <p class="font-semibold text-indigo-400"><i class="fa-solid fa-circle-info mr-1"></i> Quick Study Tip:</p>
+                            <p>Make sure to practice numerical examples and derivations side-by-side while reading through this chapter.</p>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800">
+                        <button onclick="closePdfReader()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-2.5 rounded-xl text-xs transition border border-slate-700">
+                            Close Reader
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="glass w-full max-w-xl rounded-3xl border border-slate-700 p-8 space-y-6 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <h3 id="modalProjTitle" class="text-xl font-bold text-white">Project Title</h3>
+                <button onclick="closeProjectModal()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <p id="modalProjDesc" class="text-slate-300 text-sm leading-relaxed">Project description goes here...</p>
+            <div class="pt-4 border-t border-slate-800 flex justify-end">
+                <button onclick="closeProjectModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-6 py-2.5 rounded-xl transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Background Particle Canvas
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(99, 102, 241, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // EEE Calculator Logic
+        function calculateOhms() {
+            const v = parseFloat(document.getElementById('calcV').value);
+            const i = parseFloat(document.getElementById('calcI').value);
+            const r = parseFloat(document.getElementById('calcR').value);
+            const resDiv = document.getElementById('calcResult');
+            const pInput = document.getElementById('calcP');
+
+            let filledCount = 0;
+            if (!isNaN(v)) filledCount++;
+            if (!isNaN(i)) filledCount++;
+            if (!isNaN(r)) filledCount++;
+
+            if (filledCount < 2) {
+                resDiv.classList.remove('hidden');
+                resDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> Please enter at least any two values (V, I, or R) to compute.';
+                return;
+            }
+
+            let calcV = v, calcI = i, calcR = r, calcP = 0;
+
+            if (isNaN(v)) {
+                calcV = i * r;
+                document.getElementById('calcV').value = calcV.toFixed(2);
+            } else if (isNaN(i)) {
+                calcI = v / r;
+                document.getElementById('calcI').value = calcI.toFixed(2);
+            } else if (isNaN(r)) {
+                calcR = v / i;
+                document.getElementById('calcR').value = calcR.toFixed(2);
+            }
+
+            calcP = calcV * calcI;
+            pInput.value = calcP.toFixed(2) + ' W';
+
+            resDiv.classList.remove('hidden');
+            resDiv.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Computed successfully! Voltage: <strong>${calcV.toFixed(2)}V</strong>, Current: <strong>${calcI.toFixed(2)}A</strong>, Resistance: <strong>${calcR.toFixed(2)}&Omega;</strong>, Power: <strong>${calcP.toFixed(2)}W</strong>.`;
+        }
+
+        function clearCalculator() {
+            document.getElementById('calcV').value = '';
+            document.getElementById('calcI').value = '';
+            document.getElementById('calcR').value = '';
+            document.getElementById('calcP').value = '';
+            document.getElementById('calcResult').classList.add('hidden');
+        }
+
+        // PDF Reader Modal Functions
+        function openPdfReader(title, url, desc) {
+            document.getElementById('modalBookTitle').innerText = title;
+            document.getElementById('viewerBookName').innerText = title;
+            document.getElementById('viewerBookDesc').innerText = desc;
+            document.getElementById('downloadBtn').href = url;
+            document.getElementById('pdfModal').classList.remove('hidden');
+            document.getElementById('pdfModal').classList.add('flex');
+        }
+
+        function closePdfReader() {
+            document.getElementById('pdfModal').classList.remove('flex');
+            document.getElementById('pdfModal').classList.add('hidden');
+        }
+
+        // Project Modal Functions
+        function openProjectModal(title, desc) {
+            document.getElementById('modalProjTitle').innerText = title;
+            document.getElementById('modalProjDesc').innerText = desc;
+            document.getElementById('projectModal').classList.remove('hidden');
+            document.getElementById('projectModal').classList.add('flex');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.remove('flex');
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Contact Form Handler
+        function handleContact(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out, Amarjeet will get back to you soon!');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
